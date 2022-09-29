@@ -40,14 +40,16 @@ export const ContainerInputSearch = styled.form`
     background: ${(props) => props.theme.colors["base-input"]};
     padding: 12px 16px;
     border-radius: 6px;
-  
+
     border: none;
     width: 864px;
     height: 50px;
     color: ${(props) => props.theme.colors["base-text"]};
+    transition: 0.5s;
+    outline: none;
 
     &:focus {
-      border-color: ${(props) => props.theme.colors["brand-blue"]};
+      border: 1px solid ${(props) => props.theme.colors["brand-blue"]};
     }
 
     &::placeholder {

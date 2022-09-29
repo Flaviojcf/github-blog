@@ -1,8 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import { Container } from "./styles";
 
 export function ContainerPost() {
+  const navigate = useNavigate();
+
+  function handleClick() {
+    navigate("/post");
+  }
   return (
-    <Container>
+    <Container onClick={() => handleClick()}>
       <header>
         <p>JavaScript data types and data structures</p>
         <span>Há 1 dia</span>
