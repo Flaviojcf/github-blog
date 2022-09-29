@@ -3,6 +3,9 @@ import { ThemeProvider } from "styled-components";
 import { Router } from "./Router";
 import { GlobalStyles } from "./styles/global";
 import { defaultTheme } from "./styles/theme/defaultTheme";
+import moment from "moment";
+import "moment/dist/locale/pt-br";
+moment.locale("pt-br");
 
 function App() {
   return (

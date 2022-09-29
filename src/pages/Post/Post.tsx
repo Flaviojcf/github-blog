@@ -5,7 +5,6 @@ import {
   ContainerSocial,
   Container,
 } from "./styles";
-import ReactMarkdown from "react-markdown";
 import { useNavigate } from "react-router-dom";
 
 export function Post() {

@@ -1,23 +1,31 @@
-import { useNavigate } from "react-router-dom";
+import { relativeDateFormatter } from "../../utils/dateFormatter";
 import { Container } from "./styles";
 
-export function ContainerPost() {
-  const navigate = useNavigate();
+export interface IssuesProps {
+  title: string;
+  body: string;
+  created_at: string;
+  number: number;
+  html_url: string;
+  comments: number;
+  user: {
+    login: string;
+  };
+}
+interface PostProps {
+  post: IssuesProps;
+ 
+}
 
-  function handleClick() {
-    navigate("/post");
-  }
+export function ContainerPost({ post }: PostProps) {
+  const dateFormatted = relativeDateFormatter(post.created_at);
   return (
-    <Container onClick={() => handleClick()}>
+    <Container>
       <header>
-        <p>JavaScript data types and data structures</p>
-        <span>Há 1 dia</span>
+        <p>{post.title}</p>
+        <span>{dateFormatted}</span>
       </header>
-      <span>
-        Programming languages all have built-in data structures, but these often
-        differ from one language to another. This article attempts to list the
-        built-in data structures available in JavaScript and what properties....
-      </span>
+      <span>{post.body}</span>
     </Container>
   );
 }

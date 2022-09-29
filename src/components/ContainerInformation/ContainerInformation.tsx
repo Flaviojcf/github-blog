@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { api } from "../../services/api";
 import {
   Container,
   ContainerGithub,
@@ -6,39 +9,59 @@ import {
   ContainerSocial,
 } from "./styles";
 
+interface githubInformationsProps {
+  name: string;
+  url: string;
+  followers: string;
+  company?: string;
+  bio: string;
+  avatar_url: string;
+  login: string;
+  html_url: string;
+}
+
 export function ContainerInformation() {
+  const [userInfo, setUserInfo] = useState({} as githubInformationsProps);
+
+  async function getUserInfo() {
+    const response = await api.get("/users/flaviojcf");
+    setUserInfo(response.data);
+  }
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+
+  console.log(userInfo.html_url);
+
   return (
     <Container>
       <ContainerImg>
-        <img
-          src="https://avatars.githubusercontent.com/u/71460942?v=4"
-          alt=""
-        />
+        <img src={userInfo.avatar_url} alt="" />
       </ContainerImg>
       <ContainerInformationText>
-        <p>Flavio Costa</p>
-        <span>
-          University student of electrical engineering, studying and improving
-          my skills in web programming and other development areas.
-        </span>
+        <p>{userInfo.name}</p>
+        <span>{userInfo.bio}</span>
         <ContainerSocial>
           <span>
             <img src="/github.png" alt="" />
-            <p>Flaviojcf</p>
+            <p>{userInfo.login}</p>
           </span>
           <span>
             <img src="/employer.png" alt="" />
-            <p>Google</p>
+            <p>{userInfo.company === null ? "Meta" : userInfo.company}</p>
           </span>
           <span>
             <img src="/followers.png" alt="" />
-            <p>34 Seguidores</p>
+            <p>{userInfo.followers} Seguidores</p>
           </span>
         </ContainerSocial>
       </ContainerInformationText>
       <ContainerGithub>
-        <p>GITHUB</p>
-        <img src="/redirect.png" alt="" />
+        <Link to={userInfo.html_url}>
+          <p>GITHUB</p>
+          <img src="/redirect.png" alt="" />
+        </Link>
       </ContainerGithub>
     </Container>
   );

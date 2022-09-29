@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -7,7 +8,6 @@ export const Container = styled.div`
   padding: 32px 40px 32px 40px;
   display: flex;
   margin-top: -106px;
-
 `;
 
 export const ContainerImg = styled.div`
@@ -75,6 +75,16 @@ export const ContainerGithub = styled.div`
   cursor: pointer;
   box-sizing: border-box;
   line-height: 19px;
+  a {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    height: 19px;
+    width: 67px;
+    cursor: pointer;
+    box-sizing: border-box;
+    line-height: 19px;
+  }
 
   p {
     font-family: "Nunito";

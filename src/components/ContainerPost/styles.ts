@@ -23,6 +23,8 @@ export const Container = styled.div`
     & > p {
       font-family: "Nunito";
       font-style: normal;
+
+      max-width: 280px;
       font-weight: 700;
       font-size: 20px;
       line-height: 160%;
@@ -36,7 +38,8 @@ export const Container = styled.div`
       line-height: 160%;
       color: ${(props) => props.theme.colors["base-span"]};
       height: 22px;
-      width: 60px;
+      width: 100px;
+      margin-left: 20px;
     }
   }
 
@@ -47,5 +50,6 @@ export const Container = styled.div`
     font-size: 16px;
     line-height: 160%;
     color: ${(props) => props.theme.colors["base-text"]};
+    overflow: hidden;
   }
 `;
