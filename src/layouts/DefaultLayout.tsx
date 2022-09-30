@@ -7,7 +7,8 @@ export function DefaultLayout() {
   return (
     <LayoutContainer>
       <Header />
-        <Outlet />
+
+      <Outlet />
     </LayoutContainer>
   );
 }

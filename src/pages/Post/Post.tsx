@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { relativeDateFormatter } from "../../utils/dateFormatter";
 import ReactMarkdown from "react-markdown";
+import { Header } from "../../components/Header/Header";
 
 interface PostProps {
   title: string;
