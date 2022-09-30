@@ -51,9 +51,9 @@ export function Post() {
             <img src="/leftArrow.png" />
             <p>VOLTAR</p>
           </span>
-          <Link to={postInformations.html_url}>
+          <a href={postInformations.html_url} target="_blank">
             <p>VER NO GITHUB</p>
-          </Link>
+          </a>
         </ContainerReturn>
         <span>{postInformations.title}</span>
         <ContainerSocial>

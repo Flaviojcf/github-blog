@@ -57,10 +57,10 @@ export function ContainerInformation() {
         </ContainerSocial>
       </ContainerInformationText>
       <ContainerGithub>
-        <Link to={userInfo.html_url}>
+        <a href={userInfo.html_url} target="_blank">
           <p>GITHUB</p>
           <img src="/redirect.png" alt="" />
-        </Link>
+        </a>
       </ContainerGithub>
     </Container>
   );
