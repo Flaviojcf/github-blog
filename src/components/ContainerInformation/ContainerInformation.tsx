@@ -32,7 +32,6 @@ export function ContainerInformation() {
     getUserInfo();
   }, []);
 
-  console.log(userInfo.html_url);
 
   return (
     <Container>

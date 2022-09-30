@@ -26,7 +26,6 @@ export function Home() {
     );
 
     setPosts(response.data.items);
-    console.log(posts)
   }
 
   useEffect(() => {
@@ -40,7 +39,7 @@ export function Home() {
 
       <ContainerPostGroup>
         {posts.map((post) => (
-          <ContainerPost key={post.number} post={post}  />
+          <ContainerPost key={post.number} post={post} />
         ))}
       </ContainerPostGroup>
     </Container>

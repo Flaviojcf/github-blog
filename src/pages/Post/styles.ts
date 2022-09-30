@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const ContainerInformations = styled.div`
   width: 864px;
-  height: 168px;
+  height: 198px;
   background: ${(props) => props.theme.colors["base-profile"]};
   margin-top: -84px;
   padding: 32px;
@@ -51,7 +51,7 @@ export const ContainerReturn = styled.div`
       color: ${(props) => props.theme.colors["brand-blue"]};
     }
   }
-  & > p {
+  & > a > p {
     font-family: "Nunito";
     font-style: normal;
     font-weight: 700;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ContainerSearchForm = styled.div`
+export const ContainerSearch = styled.div`
   width: 864px;
   height: 87px;
   margin-top: 72px;

@@ -5,67 +5,73 @@ import {
   ContainerSocial,
   Container,
 } from "./styles";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { api } from "../../services/api";
+import { relativeDateFormatter } from "../../utils/dateFormatter";
+import ReactMarkdown from "react-markdown";
+
+interface PostProps {
+  title: string;
+  body: string;
+  created_at: string;
+  number: number;
+  html_url: string;
+  comments: number;
+  user: {
+    login: string;
+  };
+}
 
 export function Post() {
-  const navigate = useNavigate()
-  
-  function handleClick(){
-    navigate('/')
-  }
+  const { id } = useParams();
+  const [postInformations, setPostInformations] = useState({} as PostProps);
+  const formattedDate = relativeDateFormatter(postInformations?.created_at);
+  const navigate = useNavigate();
 
+  async function getPostInfo() {
+    const response = await api.get(`/repos/Flaviojcf/github-blog/issues/${id}`);
+
+    setPostInformations(response.data);
+  }
+  useEffect(() => {
+    getPostInfo();
+  }, []);
+
+  function onReturn() {
+    navigate("/");
+  }
 
   return (
     <Container>
       <ContainerInformations>
         <ContainerReturn>
-          <span onClick={()=>handleClick()}>
-            <img src="leftArrow.png" alt="" />
+          <span onClick={onReturn}>
+            <img src="/leftArrow.png" />
             <p>VOLTAR</p>
           </span>
-          <p>VER NO GITHUB</p>
+          <Link to={postInformations.html_url}>
+            <p>VER NO GITHUB</p>
+          </Link>
         </ContainerReturn>
-        <span>JavaScript data types and data structures</span>
+        <span>{postInformations.title}</span>
         <ContainerSocial>
           <span>
             <img src="/github.png" alt="" />
-            <p>Flaviojcf</p>
+            <p>{postInformations.user?.login}</p>
           </span>
           <span>
             <img src="/calendar.png" alt="" />
-            <p>Há 1 dia</p>
+            <p>{formattedDate}</p>
           </span>
           <span>
             <img src="/comment.png" alt="" />
-            <p>5 Comentários</p>
+            <p>{postInformations.comments}Comentários</p>
           </span>
         </ContainerSocial>
       </ContainerInformations>
       <ContainerContent>
-        <div>
-          <strong>
-            Programming languages all have built-in data structures, but these
-            often differ from one language to another.
-          </strong>{" "}
-          This article attempts to list the built-in data structures available
-          in JavaScript and what properties they have. These can be used to
-          build other data structures. Wherever possible, comparisons with other
-          languages are drawn.
-          <br />
-          <br />
-          Dynamic typing
-          <br />
-          JavaScript is a loosely typed and dynamic language. Variables in
-          JavaScript are not directly associated with any particular value type,
-          and any variable can be assigned (and re-assigned) values of all
-          types:
-        </div>
-
-        <pre>
-          let foo = 42; // foo is now a number  <br />
-          foo = ‘bar’; // foo is now a string  <br />
-          foo = true; // foo is now a boolean
-        </pre>
+        <ReactMarkdown>{postInformations.body}</ReactMarkdown>
       </ContainerContent>
     </Container>
   );

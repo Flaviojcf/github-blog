@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { relativeDateFormatter } from "../../utils/dateFormatter";
 import { Container } from "./styles";
 
@@ -14,13 +15,17 @@ export interface IssuesProps {
 }
 interface PostProps {
   post: IssuesProps;
- 
 }
 
 export function ContainerPost({ post }: PostProps) {
+  const navigate = useNavigate();
+  function teste() {
+    navigate(`/post/${post.number}`);
+  }
+
   const dateFormatted = relativeDateFormatter(post.created_at);
   return (
-    <Container>
+    <Container onClick={teste}>
       <header>
         <p>{post.title}</p>
         <span>{dateFormatted}</span>

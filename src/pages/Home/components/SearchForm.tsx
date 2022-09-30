@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {
   ContainerInputSearch,
-  ContainerSearchForm,
+  ContainerSearch,
   ContentHeader,
 } from "./styles";
 
@@ -19,7 +19,7 @@ export function SearchForm({ getUserIssues, postLength }: SearchFormProps) {
   }
 
   return (
-    <ContainerSearchForm>
+    <ContainerSearch>
       <ContentHeader>
         <p>Publicações</p>
         <p>{postLength} publicações</p>
@@ -31,6 +31,6 @@ export function SearchForm({ getUserIssues, postLength }: SearchFormProps) {
           onBlur={(e) => onChangeQuery(e.target.value)}
         />
       </ContainerInputSearch>
-    </ContainerSearchForm>
+    </ContainerSearch>
   );
 }
